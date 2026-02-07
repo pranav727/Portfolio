@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazari Pranav | Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Hazari Pranav, a Computer Science Engineering graduate skilled in Java, Cybersecurity, and Cloud Computing.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Placeholder for FontAwesome -->
+    <!-- Using a CDN for icons since I can't look up user's kit -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- Animate On Scroll Library -->
+</head>
+
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <header id="navbar">
+        <nav class="container">
+            <div class="logo">HP.</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="badge">Available for Work</div>
+                    <span class="greeting">Hello, I'm</span>
+                    <h1 class="title">Hazari Pranav</h1>
+                    <h2 class="typewriter">I build <span id="typewriter-text"></span></h2>
+                    <p class="subtitle">Computer Science Engineer specializing in Secure Software & Cloud
+                        Infrastructure.</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn primary">View Projects</a>
+                        <a href="#contact" class="btn secondary">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="img-wrapper">
+                        <img src="profile.jpg" alt="Hazari Pranav">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section (Education & Experience) -->
+        <section id="timeline">
+            <div class="container">
+                <h2 class="section-title">Journey & Qualifications</h2>
+                <div class="timeline">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="content">
+                            <h3>B.Tech in Computer Science</h3>
+                            <h4>Kshatriya College of Engineering</h4>
+                            <span class="date">May 2024</span>
+                            <p>Graduated with a focus on core CS fundamentals. CGPA: 6.36/10.0.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="content">
+                            <h3>Junior Penetration Tester</h3>
+                            <h4>TryHackMe Path</h4>
+                            <span class="date">2024</span>
+                            <p>Completed practical training in Web Hacking, Network Security, and Privilege Escalation
+                                using Burp Suite & Metasploit.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item left" data-aos="fade-right">
+                        <div class="content">
+                            <h3>Full Stack Java Development</h3>
+                            <h4>Durgasoft Solutions</h4>
+                            <span class="date">Certification</span>
+                            <p>Mastered Java, Spring Framework, and JDBC for building enterprise-grade applications.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item right" data-aos="fade-left">
+                        <div class="content">
+                            <h3>Cybersecurity & Ethical Hacking</h3>
+                            <h4>Edureka</h4>
+                            <span class="date">Score: 95%</span>
+                            <p>Comprehensive training on vulnerability assessment and ethical hacking methodologies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-wrapper">
+                    <div class="skill-category glass-card">
+                        <h3><i class="fas fa-code"></i> Core Development</h3>
+                        <div class="skill-tags">
+                            <span><i class="fab fa-java"></i> Java</span>
+                            <span><i class="fab fa-python"></i> Python</span>
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span><i class="fas fa-code"></i> C++</span>
+                            <span><i class="fab fa-html5"></i> HTML5/CSS3</span>
+                        </div>
+                    </div>
+                    <div class="skill-category glass-card">
+                        <h3><i class="fas fa-cloud"></i> Infrastructure</h3>
+                        <div class="skill-tags">
+                            <span><i class="fab fa-aws"></i> AWS (EC2, S3)</span>
+                            <span><i class="fab fa-docker"></i> Docker</span>
+                            <span><i class="fab fa-git-alt"></i> Git/GitHub</span>
+                            <span><i class="fab fa-linux"></i> Linux</span>
+                        </div>
+                    </div>
+                    <div class="skill-category glass-card">
+                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        <div class="skill-tags">
+                            <span><i class="fas fa-bug"></i> Metasploit</span>
+                            <span><i class="fas fa-cookie-bite"></i> Burp Suite</span>
+                            <span><i class="fas fa-search"></i> Vuln Assessment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card" data-aos="fade-up">
+                        <div class="project-content">
+                            <div class="project-top">
+                                <i class="fas fa-folder-open folder-icon"></i>
+                                <div class="project-links">
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                            <h3>Face Recognition Attendance</h3>
+                            <p class="t-stack">Python • OpenCV • Automation</p>
+                            <p class="project-desc">
+                                A secure, automated attendance system using computer vision. Achieved 95% recognition
+                                accuracy, significantly reducing manual tracking effort.
+                            </p>
+                        </div>
+                    </article>
+                    <article class="project-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="project-content">
+                            <div class="project-top">
+                                <i class="fas fa-folder-open folder-icon"></i>
+                                <div class="project-links">
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                </div>
+                            </div>
+                            <h3>Junior Penetration Testing</h3>
+                            <p class="t-stack">Kali Linux • Burp Suite • Metasploit</p>
+                            <p class="project-desc">
+                                Hands-on experience with web offensive security, network analysis, and privilege
+                                escalation simulation through TryHackMe labs.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container small-container">
+                <div class="contact-box" data-aos="zoom-in">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="contact-text">I am currently looking for full-time opportunities in Software Development
+                        and Security. My inbox is always open.</p>
+                    <a href="mailto:pranavhazari@gmail.com" class="btn primary big-btn">Say Hello</a>
+                    <div class="social-links-footer">
+                        <a href="https://linkedin.com/in/hazari-pranav" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="mailto:pranavhazari@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Designed & Built by Hazari Pranav</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
