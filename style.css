@@ -33,10 +33,17 @@ body {
     overflow-x: hidden;
 }
 
-/* Canvas Background Adjustment to match new palette */
+/* Canvas Background - Performance Optimized */
 #particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 100%);
     opacity: 0.6;
+    z-index: 0;
+    pointer-events: none;
 }
 
 a {
@@ -162,6 +169,7 @@ section {
     -webkit-text-fill-color: transparent;
     position: relative;
     animation: shimmer 3s infinite linear;
+    will-change: opacity; /* Performance hint */
 }
 
 @keyframes shimmer {
@@ -261,6 +269,7 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s;
+    will-change: transform; /* Performance hint */
 }
 
 .img-wrapper:hover img {
@@ -325,6 +334,7 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.03);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    will-change: transform; /* Performance hint */
 }
 
 .timeline-item .content:hover {
@@ -371,6 +381,7 @@ section {
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.03);
     transition: 0.3s;
+    will-change: transform; /* Performance hint */
 }
 
 .glass-card:hover {
@@ -425,6 +436,7 @@ section {
     border-radius: 8px;
     transition: 0.3s;
     height: 100%;
+    will-change: transform; /* Performance hint */
 }
 
 .project-card:hover {
