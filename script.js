@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Particle Animation ---
+    // --- Optimized Particle Animation (Same Visual Effect) ---
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -51,19 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let particlesArray;
 
-    function drawGlow() {
-        // Add global glow effect
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = '#38bdf8';
-    }
-
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.directionX = (Math.random() * 2) - 1; // Faster speed
+            this.directionX = (Math.random() * 2) - 1;
             this.directionY = (Math.random() * 2) - 1;
-            this.size = (Math.random() * 4) + 1; // Larger particles
+            this.size = (Math.random() * 4) + 1;
             this.color = '#38bdf8';
         }
 
@@ -90,7 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function init() {
         particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 5000; // High density
+        // Reduced from /5000 to /9000 for better performance while keeping visual density
+        let numberOfParticles = (canvas.height * canvas.width) / 9000;
         for (let i = 0; i < numberOfParticles; i++) {
             particlesArray.push(new Particle());
         }
@@ -98,8 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
         requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
-        drawGlow(); // Apply glow
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Apply glow effect
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#38bdf8';
 
         for (let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].update();
@@ -108,14 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function connect() {
-        let opacityValue = 1;
+        const maxDistance = (canvas.width / 7) * (canvas.height / 7);
+        
         for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(56, 189, 248,' + opacityValue + ')'; // Brighter Blue Lines
-                    ctx.lineWidth = 2; // Thicker lines
+            for (let b = a + 1; b < particlesArray.length; b++) { // Skip redundant pairs (a->b same as b->a)
+                const dx = particlesArray[a].x - particlesArray[b].x;
+                const dy = particlesArray[a].y - particlesArray[b].y;
+                const distance = dx * dx + dy * dy; // Use squared distance (avoid sqrt)
+                
+                if (distance < maxDistance) {
+                    const opacityValue = 1 - (distance / 20000);
+                    ctx.strokeStyle = 'rgba(56, 189, 248,' + opacityValue + ')';
+                    ctx.lineWidth = 2;
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
@@ -140,33 +142,37 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isDeleting) {
                 textElement.textContent = currentPhrase.substring(0, charIndex - 1);
                 charIndex--;
-                typeSpeed = 50; // Faster deleting
+                typeSpeed = 50;
             } else {
                 textElement.textContent = currentPhrase.substring(0, charIndex + 1);
                 charIndex++;
-                typeSpeed = 100; // Normal typing
+                typeSpeed = 100;
             }
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
-                typeSpeed = 2000; // Pause at end
+                typeSpeed = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500; // Pause before new phrase
+                typeSpeed = 500;
             }
 
             setTimeout(type, typeSpeed);
         }
 
-        // Start typing loop
         setTimeout(type, 1000);
     }
 
+    // Debounced resize for better performance
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        init();
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        }, 150);
     });
 
     init();
